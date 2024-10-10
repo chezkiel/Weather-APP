@@ -25,3 +25,37 @@
 #container a {
   text-decoration: none;
 }
+
+.cardStyle {
+  border-radius: 25px;
+  background-color: #3B7E88;
+  text-align: center;
+
+  h2 {
+    color: white;
+    font-weight: 300;
+  }
+
+  #temp {
+    font-weight: 300;
+    font-size: 3em;
+  }
+}
+
+#locationIcon {
+  color: #F6B844;
+}
+
+#date {
+  color: #F6B844;
+}
+
+.detailCard {
+  --ion-background-color: #3B7E88;
+  border-radius: 20px;
+
+  span {
+    color: white;
+    font-weight: 300;
+  }
+}

@@ -1,0 +1,66 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title style="font-weight: 400; font-size: 1.5em;">Weather App</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-item>
+    <ion-searchbar [(ngModel)]="cityName" (ngModelChange)="loadData()" animated="true"
+      placeholder="Search"></ion-searchbar>
+  </ion-item>
+
+  <div *ngIf="!loading">
+    <ion-card class="cardStyle">
+      <ion-item lines="none">
+        <ion-label>
+          <h2 id="temp">
+            {{ (weatherTemp?.temp - 273.15).toFixed(0) }}°C
+          </h2>
+          <p>{{ weatherMain }}</p>
+        </ion-label>
+        <img slot="end" [src]="weatherIcon" alt="Weather Icon">
+      </ion-item>
+      <ion-item lines="none">
+        <ion-icon id="locationIcon" name="location"></ion-icon>
+        <span slot="end">{{cityName}}</span>
+      </ion-item>
+    </ion-card>
+
+    <ion-card>
+      <ion-item lines="none">
+        <ion-label style="color: rgb(255, 0, 0);">Today's Report</ion-label>
+        <ion-label id="date" slot="end">{{todayDate | date: "EEE dd MMM yyyy"}}</ion-label>
+      </ion-item>
+      <ion-row>
+        <ion-col>
+          <ion-item>
+            <ion-icon style="color: red;" name="thermometer-outline"></ion-icon>
+            <span slot="end">{{(weatherTemp?.temp_max - 273.15).toFixed(0)}}°C</span>
+          </ion-item>
+        </ion-col>
+        <ion-col>
+          <ion-item>
+            <ion-icon style="color: aqua;" name="thermometer-outline"></ion-icon>
+            <span slot="end">{{(weatherTemp?.temp_min - 273.15).toFixed(0)}}°C</span>
+          </ion-item>
+        </ion-col>
+        <ion-col>
+          <ion-item>
+            <ion-icon style="color: blue;" name="water-outline"></ion-icon>
+            <span slot="end">{{weatherTemp?.humidity}}%</span>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+    </ion-card>
+  </div>
+
+  <div *ngIf="loading" class="noData">
+    <img src="../../assets/33519396-7e56363c-d79d-11e7-969b-09782f5ccbab.png" alt="">
+  </div>
+
+  <ion-button expand="block" [routerLink]="['/home']">
+    Go to Home Page
+  </ion-button>
+
+</ion-content>

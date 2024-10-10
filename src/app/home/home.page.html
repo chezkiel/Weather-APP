@@ -1,20 +1,54 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
-    <ion-title>
-      Blank
-    </ion-title>
+    <ion-title style="font-weight: 400; font-size: 1.5em;">Weather App</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Blank</ion-title>
-    </ion-toolbar>
-  </ion-header>
+  <ion-card>
+    <ion-item>
+      <ion-icon id="locationIcon" name="location"></ion-icon>
+      <span slot="end" style="font-size: 25px;">{{cityName}}</span>
+    </ion-item>
+  </ion-card>
 
-  <div id="container">
-    <strong>Ready to create an app?</strong>
-    <p>Start with Ionic <a target="_blank" rel="noopener noreferrer" href="https://ionicframework.com/docs/components">UI Components</a></p>
-  </div>
+  <ion-card class="cardStyle">
+    <ion-item lines="none">
+      <ion-label>
+        <h2 id="temp">
+          {{ (weatherTemp?.temp - 273.15).toFixed(0) }}°C
+        </h2>
+        <p>{{ weatherMain }}</p>
+      </ion-label>
+      <img slot="end" [src]="weatherIcon" alt="Weather Icon">
+    </ion-item>
+  </ion-card>
+
+  <ion-card>
+    <ion-item lines="none">
+      <ion-label style="color: rgb(255, 0, 0);">Today's Report</ion-label>
+      <ion-label id="date" slot="end">{{todayDate | date: "EEE dd MMM yyyy"}}</ion-label>
+    </ion-item>
+    <div class="detailCard">
+      <ion-item>
+        <ion-icon style="color: red;" name="thermometer-outline"></ion-icon>
+        <span slot="end">{{(weatherTemp?.temp_max - 273.15).toFixed(0)}}°C</span>
+      </ion-item>
+
+      <ion-item>
+        <ion-icon style="color: aqua;" name="thermometer-outline"></ion-icon>
+        <span slot="end">{{(weatherTemp?.temp_min - 273.15).toFixed(0)}}°C</span>
+      </ion-item>
+
+      <ion-item>
+        <ion-icon style="color: blue;" name="water-outline"></ion-icon>
+        <span slot="end">{{weatherTemp?.humidity}}%</span>
+      </ion-item>
+    </div>
+  </ion-card>
+
+  <ion-button expand="block" [routerLink]="['/search']">
+    Go to Search Page
+  </ion-button>
+
 </ion-content>
